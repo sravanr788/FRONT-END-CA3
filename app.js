@@ -23,7 +23,7 @@ async function getRandomMeal(){
             // let ingredient = meal.strIngredient
             let ingredient = meal[`strIngredient${i}`];
             let measure = meal[`strMeasure${i}`];
-            // Checking  if both strIngredient and strMeasure are not empty
+            // Checining  if both strIngredient and strMeasure are not empty
             if (ingredient && measure) {
                 ingredients += `${ingredient}: ${measure} <br>`;
             }
@@ -57,6 +57,11 @@ async function getMealBySearch(value) {
         let allMeals = data.meals;
         let output = "";
 
+        if(allMeals==null){
+            document.getElementById("categories").style.display="block"
+            document.getElementById("categories").innerHTML = "No Such Results Found.Please try another";
+        }
+        else {
         for (let i = 0; i < allMeals.length; i++) {
             let meal = allMeals[i];
             output += `<div class="card" onclick="openSearchModal(${i})">
@@ -89,8 +94,16 @@ async function getMealBySearch(value) {
                 </div>
             </div>`;
         }
-
+        
         document.getElementById("categories").innerHTML = output;
+    }
+        document.getElementById("categories").focus()
+        document.getElementById("categories").scrollIntoView({
+            behavior:'smooth',
+            block:'start',
+        })
+
+
     } catch (err) {
         console.error("Error:", err);
     }
@@ -106,12 +119,13 @@ function closeSearchModal(index) {
     document.getElementById(`searchModal${index}`).style.display = 'none';
 }
 
-document.getElementById("Searchbox").addEventListener('input', (e) => {
+document.getElementById("Searchbox").addEventListener("keypress", (e) => {
     let value = e.target.value;
 
-    if (value !== '') {
+    if (e.key === 'Enter' && value!=='') {
         getMealBySearch(value);
-    } else {
+        }
+    else {
         document.getElementById("categories").innerHTML = "";
     }
 });
@@ -120,3 +134,4 @@ document.getElementById("Searchbox").addEventListener('input', (e) => {
 function closeModal() {
     document.getElementById('popup').style.display = 'none';
 }
+

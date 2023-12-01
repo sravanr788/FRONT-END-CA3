@@ -9,6 +9,7 @@ body {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background: url(./assets/bg.jpg) no-repeat contain/100vw auto;
     text-wrap: wrap;
+    text-align: center;
 }
 .flex {
     display: flex;
@@ -73,9 +74,10 @@ header {
     font-size: 1rem;
 }
 #categories {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
+    text-align: center;
+    display: grid; 
+     grid-template-columns: repeat(3, 1fr); 
+     gap: 35px; 
 }
 .card {
     width: 15vw;
@@ -219,6 +221,7 @@ footer {
         height: 50%;
         height: fit-content;
         z-index: 22;
+        margin: auto;
     }
     #modalcontent{
         flex-direction: column;
